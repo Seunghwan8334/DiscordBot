@@ -9,4 +9,7 @@ bot = commands.Bot(command_prefix='$', intents=intents)
 
 TOKEN = bot_token
 
-GUILD = discord.Object(id=1286991310657683569)
+GUILD_IDS = [
+    1286991310657683569,
+    933332325582909480,
+]
