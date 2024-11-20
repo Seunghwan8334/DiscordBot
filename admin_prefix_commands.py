@@ -1,10 +1,4 @@
-from initializations import *
-
-@bot.command(name="shutdown")  
-@commands.has_permissions(administrator=True)
-async def shutdown(ctx):
-    await ctx.send("shutting down...") 
-    await bot.close() 
+from initializations import bot, commands, discord
 
 @bot.command(name="info") 
 @commands.has_permissions(administrator=True)
@@ -18,6 +12,7 @@ async def info(ctx, *, member: discord.Member):
         await ctx.send(role) 
 
 @bot.command(name="say")
+@commands.has_permissions(administrator=True)
 async def say(ctx, *, args):
     if ctx.author == bot.user:
         await ctx.channel.send("무한반복 감지!!")
@@ -37,6 +32,12 @@ async def say(ctx, *, args):
             await ctx.channel.send(f"명령어 형식을 따라해주세요.\n$say [메세지] [보낼채널]")  
     except Exception as e:
         await ctx.send(f"오류가 발생했습니다: {e}")
+
+@bot.command(name="shutdown")  
+@commands.is_owner()
+async def shutdown(ctx):
+    await ctx.send("shutting down...") 
+    await bot.close() 
 
 @bot.command(name="sync", help="sync all slash commands in discord servers")
 @commands.is_owner()

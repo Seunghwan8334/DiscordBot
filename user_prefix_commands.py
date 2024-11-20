@@ -1,4 +1,4 @@
-from initializations import *
+from initializations import bot
 
 #bot = commands.Bot(command_prefix='$', intents=intents)
 

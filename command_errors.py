@@ -1,4 +1,4 @@
-from initializations import *
+from initializations import bot, commands
 
 @bot.event 
 async def on_command_error(ctx,error): #명령어 오류 감지
@@ -14,5 +14,7 @@ async def on_command_error(ctx,error): #명령어 오류 감지
         await ctx.send("해당 명령어는 봇 소유자만 사용 가능합니다.")
     elif isinstance(error, commands.ChannelNotFound):
         await ctx.send("해당 채널은 존재하지 않습니다.")
+    elif isinstance(error, commands.BotMissingPermissions):
+        await ctx.send("봇의 권한이 부족합니다.")
     else:
-        await ctx.send("으잉? 이런 명령어 오류는 예상 못 했는데.. 봇 제작자에게 문의해봐요")
+        await ctx.send(f"으잉? 이런 명령어 오류는 예상 못 했는데.. {ctx.guild.owner.mention} 야 이것 좀 고쳐봐")

@@ -1,8 +1,9 @@
-from initializations import * #초기 변수 선언 파일
-from welcome import *
-from slash_commnds import * #slash 명령어 파일
-from user_prefix_commands import * #user 명령어 파일
-from admin_prefix_commands import * #admin 명령어 파일
+from initializations import bot, TOKEN, GUILD_IDS
+from member_events import * 
+from slash_commnds import * 
+from user_prefix_commands import * 
+from admin_prefix_commands import * 
+from command_errors import on_command_error
 import scrapper #solved ac 웹사이트 scrapper
 
 @bot.event
@@ -28,8 +29,11 @@ async def on_message(message):
     if message.author == bot.user:  #무한반복 방지
         return
     
-    if message.content.startswith("hello"):
-        await message.channel.send(f"Hi there {message.author}")
+    if message.content.startswith("봇아"):
+        if message.author == message.guild.owner:
+            await message.channel.send(f"예 행님")
+        else:
+            await message.channel.send(f"이 명령어는 서버 주인만 사용할 수 있어요.")
 
     await bot.process_commands(message) #이 문장이 없으니 prefix 명령어가 감지 되지 않았음
 
@@ -37,8 +41,8 @@ async def on_message(message):
 async def on_reaction_add(reaction, user):
     await reaction.message.channel.send(f'You reacted {reaction}!')
 
-@bot.listen("on_reaction_add") #이거 왜 on_reaction_add만 안 될까 
-async def my_message(reaction, user): #해결 완료
+@bot.listen("on_reaction_add") 
+async def my_message(reaction, user):
     print(f"reaction detected!")
 
 bot.run(TOKEN)
