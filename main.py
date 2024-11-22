@@ -1,4 +1,4 @@
-from initializations import bot, TOKEN, GUILD_IDS
+from initializations import bot, TOKEN, GUILD_IDS, SCI
 from member_events import * 
 from slash_commnds import * 
 from user_prefix_commands import * 
@@ -39,10 +39,11 @@ async def on_message(message):
 
 @bot.event
 async def on_reaction_add(reaction, user):
-    await reaction.message.channel.send(f'You reacted {reaction}!')
+    #await reaction.message.channel.send(f'You reacted {reaction}!')
+    pass
 
 @bot.listen("on_reaction_add") 
 async def my_message(reaction, user):
-    print(f"reaction detected!")
+    pass
 
 bot.run(TOKEN)

@@ -1,4 +1,4 @@
-from initializations import bot, commands, discord
+from initializations import bot, commands, discord, SCI
 
 @bot.command(name="info") 
 @commands.has_permissions(administrator=True)
@@ -32,6 +32,48 @@ async def say(ctx, *, args):
             await ctx.channel.send(f"명령어 형식을 따라해주세요.\n$say [메세지] [보낼채널]")  
     except Exception as e:
         await ctx.send(f"오류가 발생했습니다: {e}")
+
+@bot.command(name="clear")
+@commands.has_permissions(manage_messages=True)
+async def clear(ctx, num:int):
+    if num < 1:
+        await ctx.channel.send("1 이상의 숫자를 입력해주세요.") 
+    elif num > 20:
+        await ctx.channel.send("최대 20개의 메세지까지 지울 수 있습니다.")
+    else:
+        deleted = await ctx.channel.purge(limit=num+1)
+        await ctx.channel.send(f"{len(deleted)-1}개의 메세지를 삭제하였습니다.(2초 후 삭제)",delete_after=2)
+
+@bot.command(name="kick")
+@commands.has_permissions(kick_members=True)
+async def kick(ctx, member:discord.Member,*,reason=None):
+    try:
+        await member.kick(reason=reason)
+        await ctx.channel.send(f"{member.mention}님이 추방되었습니다.")
+        if reason:
+            await bot.get_channel(SCI).send(f"{ctx.author.mention}님이 {member.mention}님을 추방하였습니다.\n사유: {reason}")
+        else:
+            await bot.get_channel(SCI).send(f"{ctx.author.mention}님이 {member.mention}님을 추방하였습니다.\n사유: 정의되지 않음.")
+    except discord.Forbidden:
+        await ctx.channel.send("권한이 부족하여 해당 멤버를 추방할 수 없습니다.")
+    except Exception as e:
+        await ctx.channel.send(f"예기치 못한 오류가 발생하였습니다.")
+
+@bot.command(name="ban")
+@commands.has_permissions(ban_members=True)
+async def ban(ctx, member: discord.Member, *, reason=None):
+    try:
+        await member.ban(reason=reason)
+        await ctx.channel.send(f"{member.mention}님이 밴되었습니다.")
+        if reason:
+            await bot.get_channel(SCI).send(f"{ctx.author.mention}님이 {member.mention}님을 밴하였습니다.\n사유: {reason}")
+        else:
+            await bot.get_channel(SCI).send(f"{ctx.author.mention}님이 {member.mention}님을 밴하였습니다.\n사유: 정의되지 않음.")
+    except discord.Forbidden:
+        await ctx.channel.send("권한이 부족하여 해당 멤버를 밴할 수 없습니다.")
+    except Exception as e:
+        await ctx.channel.send(f"예기치 못한 오류가 발생하였습니다.")
+
 
 @bot.command(name="shutdown")  
 @commands.is_owner()

@@ -23,7 +23,7 @@ async def test(ctx):
 async def server(ctx):
     await ctx.send(ctx.guild)
 
-@bot.command(name="add") #Basic converter
+@bot.command(name="add") 
 async def add(ctx, a: int,b: int):
     await ctx.send(a+b)
 
