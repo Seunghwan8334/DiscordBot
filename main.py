@@ -1,10 +1,10 @@
-from initializations import bot, TOKEN, GUILD_IDS, SCI
-from member_events import * 
-from slash_commnds import * 
-from user_prefix_commands import * 
-from admin_prefix_commands import * 
-from command_errors import on_command_error
-import scrapper #solved ac 웹사이트 scrapper
+from initializations import *
+import commands_set
+from message_events import * 
+from member_events import *
+from embeds import *
+from command_errors import *
+import scrapper 
 
 @bot.event
 async def on_ready():

@@ -1,14 +1,11 @@
-from initializations import bot, SCI
-
-WELCOME_CHANNEL_ID = 1304412189725167656
-STANDARD_ROLE_ID = 1304313150757273644
+from initializations import bot, SL_C, WC_C, ST_R
 
 @bot.event
 async def on_member_join(member):
     guild = member.guild
-    welcome_channel = bot.get_channel(WELCOME_CHANNEL_ID)
-    SERVERLOG = bot.get_channel(SCI)
-    role = guild.get_role(STANDARD_ROLE_ID)
+    welcome_channel = bot.get_channel(WC_C)
+    SERVERLOG = bot.get_channel(SL_C)
+    role = guild.get_role(ST_R)
 
     if welcome_channel:
         await welcome_channel.send(f"안녕하세요 {member.mention}님! {member.guild.name}에 오신 것을 환영합니다!!^^")
@@ -24,6 +21,6 @@ async def on_member_join(member):
 
 @bot.event 
 async def on_member_remove(member):
-    SERVERLOG = bot.get_channel(SCI)
+    SERVERLOG = bot.get_channel(SL_C)
     if SERVERLOG:
         await SERVERLOG.send(f"{member.mention}님이 서버를 나가셨어요.")
