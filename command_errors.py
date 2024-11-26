@@ -1,4 +1,4 @@
-from initializations import bot, commands
+from initializations import bot, commands, SL_C
 
 @bot.event 
 async def on_command_error(ctx,error): #명령어 오류 감지
@@ -20,3 +20,4 @@ async def on_command_error(ctx,error): #명령어 오류 감지
         await ctx.send("잘못된 입력값입니다.")
     else:
         await ctx.send(f"으잉? 이런 명령어 오류는 예상 못 했는데.. {ctx.guild.owner.mention}")
+        await bot.get_channel(SL_C).send(f"Error at {ctx.channel.mention} \n {error}")

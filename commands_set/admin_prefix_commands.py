@@ -1,16 +1,5 @@
 from initializations import bot, commands, discord, SL_C
 
-@bot.command(name="info") 
-@commands.has_permissions(administrator=True)
-async def info(ctx, *, member: discord.Member):
-    msg = f'{member} joined on {member.joined_at} and has {len(member.roles)-1} roles.'
-    await ctx.send(msg)
-    await ctx.send("roles are") 
-    for role in member.roles:
-        if role.is_default():
-            continue
-        await ctx.send(role) 
-
 @bot.command(name="say")
 @commands.has_permissions(administrator=True)
 async def say(ctx, *, args):
