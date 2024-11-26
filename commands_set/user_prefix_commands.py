@@ -32,7 +32,7 @@ async def send_embed(ctx, member:discord.Member = None):
 
 @bot.command(name="code") 
 async def server(ctx):
-    await ctx.send(discordServerLink)
+    await ctx.send("<https://github.com/Seunghwan8334/DiscordBot>")
 
 @bot.command(name="add") 
 async def add(ctx, a: int,b: int):
