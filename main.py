@@ -1,10 +1,8 @@
 from initializations import *
 import commands_set
 import buttons_set
-from message_events import * 
-from member_events import *
-from embeds import *
-from command_errors import *
+import events
+from SERVERLOG import *
 import scrapper 
 
 @bot.event
@@ -23,6 +21,9 @@ async def on_ready():
             print(f"{GUILD.name} ({GUILD_ID})와 연결 성공")
         else:
             print(f"존재하지 않는 서버입니다")
+    
+    buttons_set.button_initialize()
+    
 
 @bot.event
 async def on_message(message):
