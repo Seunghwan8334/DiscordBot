@@ -1,4 +1,4 @@
-from initializations import bot
+from initializations import *
 
 @bot.command(name="help")
 async def custom_user_help(ctx):
@@ -20,6 +20,7 @@ async def custom_user_help(ctx):
     await ctx.send(help_message)
 
 @bot.command(name="help-a")
+@commands.has_permissions(administrator=True)
 async def custom_admin_help(ctx):
     help_message = """
 ### __관리자 봇 명령어 목록__
