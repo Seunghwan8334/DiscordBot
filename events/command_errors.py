@@ -1,4 +1,4 @@
-from initializations import bot, commands, SL_C
+from configs import bot, commands, SL_C
 
 @bot.event 
 async def on_command_error(ctx,error): #명령어 오류 감지

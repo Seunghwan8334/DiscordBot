@@ -1,4 +1,4 @@
-from initializations import *
+from configs import *
 
 @bot.command(name="test") 
 async def test(ctx):

@@ -1,4 +1,4 @@
-from initializations import *
+from configs import *
 
 @bot.command(name="help")
 async def custom_user_help(ctx):

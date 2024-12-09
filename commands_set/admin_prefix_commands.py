@@ -1,4 +1,4 @@
-from initializations import bot, commands, discord, SL_C
+from configs import bot, commands, discord, SL_C
 
 @bot.command(name="say")
 @commands.has_permissions(administrator=True)

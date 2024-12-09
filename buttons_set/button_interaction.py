@@ -1,4 +1,4 @@
-from initializations import *
+from configs import *
 from .button_data import student_numbers, student_statuses, student_majors
 
 @bot.event

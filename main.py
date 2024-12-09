@@ -1,4 +1,4 @@
-from initializations import *
+from configs import *
 import commands_set
 import buttons_set
 import events

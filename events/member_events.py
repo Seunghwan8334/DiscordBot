@@ -1,4 +1,4 @@
-from initializations import bot, SL_C, WC_C, ST_R
+from configs import bot, SL_C, WC_C, ST_R
 
 @bot.event
 async def on_member_join(member):

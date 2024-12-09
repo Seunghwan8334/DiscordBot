@@ -1,15 +1,15 @@
-from initializations import * 
+from configs import * 
 
 @bot.event
 async def on_message(message):
     print(f"Message from {message.author}: {message.content}")
-    if message.author == bot.user:  #¹«ÇÑ¹İº¹ ¹æÁö
+    if message.author == bot.user:  #ë¬´í•œë°˜ë³µ ë°©ì§€
         return
     
-    if message.content.startswith("º¿¾Æ"):
+    if message.content.startswith("ë´‡ì•„"):
         if message.author == message.guild.owner:
-            await message.channel.send(f"¿¹ Çà´Ô")
+            await message.channel.send(f"ì˜ˆ í–‰ë‹˜")
         else:
-            await message.channel.send(f"ÀÌ ¸í·É¾î´Â ¼­¹ö ÁÖÀÎ¸¸ »ç¿ëÇÒ ¼ö ÀÖ¾î¿ä.")
+            await message.channel.send(f"ì´ ëª…ë ¹ì–´ëŠ” ì„œë²„ ì£¼ì¸ë§Œ ì‚¬ìš©í•  ìˆ˜ ìˆì–´ìš”.")
 
-    await bot.process_commands(message) #ÀÌ ¹®ÀåÀÌ ¾øÀ¸´Ï prefix ¸í·É¾î°¡ °¨Áö µÇÁö ¾Ê¾ÒÀ½
+    await bot.process_commands(message) #ì´ ë¬¸ì¥ì´ ì—†ìœ¼ë‹ˆ prefix ëª…ë ¹ì–´ê°€ ê°ì§€ ë˜ì§€ ì•Šì•˜ìŒ

@@ -1,4 +1,4 @@
-from initializations import bot, discord
+from configs import bot, discord
 
 @bot.tree.command(name="hello", description="Say Hello")
 async def say_hello(interaction: discord.Interaction):
