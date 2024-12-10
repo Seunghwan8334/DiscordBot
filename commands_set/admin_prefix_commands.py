@@ -81,3 +81,8 @@ async def sync_313(ctx):
     except Exception as e:
         print(f"Error syncing commands: {e}")
         await ctx.send("동기화 실패..")
+
+@bot.command()
+@commands.is_owner()
+async def cogs(ctx):
+    await ctx.send(f"Loaded Cogs: {list(bot.cogs.keys())}")
