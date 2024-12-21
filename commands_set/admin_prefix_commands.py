@@ -82,7 +82,7 @@ async def sync_313(ctx):
         print(f"Error syncing commands: {e}")
         await ctx.send("동기화 실패..")
 
-@bot.command()
+@bot.command(name="cogs")
 @commands.is_owner()
 async def cogs(ctx):
     await ctx.send(f"Loaded Cogs: {list(bot.cogs.keys())}")

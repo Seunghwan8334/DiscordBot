@@ -1,5 +1,5 @@
 from discord.ext import commands
-from guildDatabase import GUILD_INFO_LIST
+from Database import GUILD_INFO_LIST
 
 # 사용 예시
 # GuildDataLoader = bot.get_cog("GuildDataLoader")

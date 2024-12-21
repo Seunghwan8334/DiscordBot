@@ -1,8 +1,13 @@
-from configs import *
+from discord.ext import commands 
 
-@bot.command(name="help")
-async def custom_user_help(ctx):
-    help_message = """
+class HelpCommands(commands.Cog):
+    
+    def __init__(self, bot):
+        self.bot = bot 
+    
+    @commands.command(name="help")
+    async def custom_user_help(self, ctx):
+        help_message = """
 ### __유저 봇 명령어 목록__
 []: 필수 {}: 선택
 
@@ -17,12 +22,12 @@ async def custom_user_help(ctx):
 - **$add [정수1] [정수2]**
 > [정수1]과 [정수2]를 합한 값을 출력합니다.
 """
-    await ctx.send(help_message)
+        await ctx.send(help_message)
 
-@bot.command(name="help-a")
-@commands.has_permissions(administrator=True)
-async def custom_admin_help(ctx):
-    help_message = """
+    @commands.command(name="help-a")
+    @commands.has_permissions(administrator=True)
+    async def custom_admin_help(self, ctx):
+        help_message = """
 ### __관리자 봇 명령어 목록__
 ### 모든 $help 안의 명령어도 가능합니다. ### 
 []: 필수 {}: 선택
@@ -43,4 +48,8 @@ async def custom_admin_help(ctx):
 > 명령어 설명
 
 """
-    await ctx.send(help_message)
+        await ctx.send(help_message)
+
+
+async def setup(bot):
+    await bot.add_cog(HelpCommands(bot))

@@ -1,10 +1,10 @@
 from configs import *
-from .button_data import student_numbers, student_statuses, student_majors
+from Database import student_numbers, student_statuses, student_majors, student_genders
 
 @bot.event
 async def on_interaction(interaction: discord.Interaction):
     user = interaction.user
-
+    #최적화 필요함 귀찮아서 일단 미룸
     for info in student_numbers:
         if interaction.data.get("custom_id") == info.get("custom_id"):
             role = interaction.guild.get_role(info["role_id"])
@@ -22,6 +22,12 @@ async def on_interaction(interaction: discord.Interaction):
             role = interaction.guild.get_role(info["role_id"])
             await toggle_role(interaction, user, role, student_majors)
             return
+    
+    for info in student_genders:
+        if interaction.data.get("custom_id") == info.get("custom_id"):
+            role = interaction.guild.get_role(info["role_id"])
+            await toggle_role(interaction, user, role, student_genders)
+            return
 
 async def toggle_role(interaction, user, role, button_info_group):
     current_role = None
@@ -38,8 +44,7 @@ async def toggle_role(interaction, user, role, button_info_group):
             await user.remove_roles(current_role)
             await user.add_roles(role)
             await interaction.response.send_message(
-                f"{current_role.mention} 역할을 제거하고 {role.mention} 역할을 부여하였습니다!", ephemeral=True
-            )
+                f"{current_role.mention} 역할을 제거하고 {role.mention} 역할을 부여하였습니다!", ephemeral=True)
     else:
         await user.add_roles(role)
         await interaction.response.send_message(f"{role.mention} 역할을 부여하였습니다!", ephemeral=True)

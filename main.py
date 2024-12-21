@@ -1,15 +1,12 @@
 from configs import bot, TOKEN
-from events.message_events import *
+from load_all_cogs import load_all_cogs
 import commands_set
-import buttons_set
+import role_buttons_select
 import scrapper 
 import asyncio
 
 async def main():
-    await bot.load_extension("events.member_events")
-    await bot.load_extension("events.command_errors")
-    #await bot.load_extension("events.message_events")
-    await bot.load_extension("guildDataLoad")
+    await load_all_cogs(bot)
     await bot.start(TOKEN)
 
 @bot.event
@@ -23,7 +20,7 @@ async def on_ready():
     else:
         print("GuildDataLoader not found")
         
-    buttons_set.button_initialize()
+    role_buttons_select.button_initialize()
 
 if __name__ == "__main__":
     asyncio.run(main())
