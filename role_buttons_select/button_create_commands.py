@@ -1,5 +1,6 @@
 from configs import *
 from Database import student_numbers, student_statuses, student_majors, student_genders
+from role_buttons_select.message_generator import generate_message
 
 @bot.command(name="create_student_number")
 @commands.is_owner() 
@@ -14,15 +15,13 @@ async def create_student_number(ctx):
         )
         view.add_item(button)
 
-
     embed = discord.Embed(
         title="아래 버튼을 클릭해주세요!", 
-        description="- 버튼을 클릭하면 해당 역할을 부여합니다.", 
+        description=generate_message(ctx.guild, student_numbers), 
         color=0x00bfff
     )
     
-    await ctx.send(embed=embed)
-    await ctx.send(view=view)
+    await ctx.send(embed=embed, view=view)
 
 
 @bot.command(name="create_student_status")
@@ -40,12 +39,11 @@ async def create_student_status(ctx):
 
     embed = discord.Embed(
         title="아래 버튼을 클릭해주세요!", 
-        description="- 버튼을 클릭하면 해당 역할을 부여합니다.", 
+        description=generate_message(ctx.guild, student_statuses),
         color=0x00bfff
     )
     
-    await ctx.send(embed=embed)
-    await ctx.send(view=view)
+    await ctx.send(embed=embed, view=view)
 
 
 @bot.command(name="create_student_major")
@@ -63,12 +61,11 @@ async def create_student_major(ctx):
 
     embed = discord.Embed(
         title="아래 버튼을 클릭해주세요!", 
-        description="- 버튼을 클릭하면 해당 역할을 부여합니다.", 
+        description=generate_message(ctx.guild, student_majors),
         color=0x00bfff
     )
     
-    await ctx.send(embed=embed)
-    await ctx.send(view=view)
+    await ctx.send(embed=embed, view=view)
 
 @bot.command(name="create_student_gender")
 @commands.is_owner()
@@ -86,9 +83,8 @@ async def create_stduent_gender(ctx):
 
     embed = discord.Embed(
         title="아래 버튼을 클릭해주세요!", 
-        description="- 버튼을 클릭하면 해당 역할을 부여합니다.", 
+        description=generate_message(ctx.guild, student_genders),
         color=0x00bfff
     )
 
-    await ctx.send(embed=embed)
-    await ctx.send(view=view)
+    await ctx.send(embed=embed, view=view)

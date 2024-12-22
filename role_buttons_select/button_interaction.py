@@ -1,5 +1,6 @@
 from configs import *
 from Database import student_numbers, student_statuses, student_majors, student_genders
+from role_buttons_select.message_generator import generate_message
 
 @bot.event
 async def on_interaction(interaction: discord.Interaction):
@@ -9,24 +10,44 @@ async def on_interaction(interaction: discord.Interaction):
         if interaction.data.get("custom_id") == info.get("custom_id"):
             role = interaction.guild.get_role(info["role_id"])
             await toggle_role(interaction, user, role, student_numbers)
+
+            embed = interaction.message.embeds[0]
+            embed.description = generate_message(interaction.guild, student_numbers)
+            
+            await interaction.message.edit(embed=embed)
             return
 
     for info in student_statuses:
         if interaction.data.get("custom_id") == info.get("custom_id"):
             role = interaction.guild.get_role(info["role_id"])
             await toggle_role(interaction, user, role, student_statuses)
+
+            embed = interaction.message.embeds[0]
+            embed.description = generate_message(interaction.guild, student_statuses)
+
+            await interaction.message.edit(embed=embed)
             return
     
     for info in student_majors:
         if interaction.data.get("custom_id") == info.get("custom_id"):
             role = interaction.guild.get_role(info["role_id"])
             await toggle_role(interaction, user, role, student_majors)
+
+            embed = interaction.message.embeds[0]
+            embed.description = generate_message(interaction.guild, student_majors)
+
+            await interaction.message.edit(embed=embed)
             return
     
     for info in student_genders:
         if interaction.data.get("custom_id") == info.get("custom_id"):
             role = interaction.guild.get_role(info["role_id"])
             await toggle_role(interaction, user, role, student_genders)
+
+            embed = interaction.message.embeds[0]
+            embed.description = generate_message(interaction.guild, student_genders)
+
+            await interaction.message.edit(embed=embed)
             return
 
 async def toggle_role(interaction, user, role, button_info_group):
