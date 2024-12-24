@@ -2,7 +2,7 @@ from configs import *
 
 @bot.command(name="test") 
 async def test(ctx):
-    await ctx.send("정상 가동 중..")
+    await ctx.send("정상 작동 중..")
 
 @bot.command(name="invite") 
 async def invite_link(ctx):
@@ -30,13 +30,9 @@ async def send_embed(ctx, member:discord.Member = None):
 
     await ctx.send(embed=embed)
 
-@bot.command(name="code") 
-async def server(ctx):
+@bot.command(name="sourcecode") 
+async def sourcecode(ctx):
     await ctx.send("<https://github.com/Seunghwan8334/DiscordBot>")
-
-@bot.command(name="add") 
-async def add(ctx, a: int,b: int):
-    await ctx.send(a+b)
 
 
 
