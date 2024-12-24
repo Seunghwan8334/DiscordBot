@@ -3,16 +3,12 @@ from cogs.load_all_cogs import load_all_cogs
 import commands
 import role_buttons_select
 import scrapper 
-import asyncio
-
-async def main():
-    await load_all_cogs(bot)
-    await bot.start(TOKEN)
 
 @bot.event
 async def on_ready():
     print(f"Logged on as {bot.user}!")
 
+    await load_all_cogs(bot)
     await bot.tree.sync()
 
     print("Loading all guild data...")
@@ -24,5 +20,7 @@ async def on_ready():
         
     role_buttons_select.button_initialize()
 
+    print("모든 준비 끝!")
+
 if __name__ == "__main__":
-    asyncio.run(main())
+    bot.run(TOKEN)

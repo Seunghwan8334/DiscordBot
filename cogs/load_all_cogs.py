@@ -2,12 +2,13 @@ cogs = [
     "events.member_events",
     "events.command_errors",
     "events.message_events",
+
     "guildDataLoad",
     
     "commands.user_commands",
 
     "cogs.cog_commands",
-    "cogs.ExampleCog",
+    "cogs.example_cog",
 ]
 
 async def load_all_cogs(bot):

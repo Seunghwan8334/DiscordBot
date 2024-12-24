@@ -8,10 +8,10 @@ def generate_message(guild, role_info_list):
         role = guild.get_role(role_id)
         if role:
             member_count = len(role.members)
-            message += f"- {role_name:7} : {member_count:4d}명\n"
+            message += f"- {role_name} : {member_count:4d}명\n"
             notSelected -= member_count
         else:
-            message += f"{role_name:7}: Error\n"
-    message += f"{"선택 안함":7}: {notSelected:4d}명\n"
+            message += f"{role_name}: Error\n"
+    message += f"{"선택 안함"}: {notSelected:4d}명\n"
 
     return message 
