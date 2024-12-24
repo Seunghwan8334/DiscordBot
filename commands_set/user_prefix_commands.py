@@ -1,9 +1,5 @@
 from configs import *
 
-@bot.command(name="test") 
-async def test(ctx):
-    await ctx.send("정상 작동 중..")
-
 @bot.command(name="invite") 
 async def invite_link(ctx):
     await ctx.send(discordServerLink)

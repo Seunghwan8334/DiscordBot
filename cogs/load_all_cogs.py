@@ -1,12 +1,12 @@
-from discord.ext import commands
-
 cogs = [
-    "commands_set.help_prefix_commands",
     "events.member_events",
     "events.command_errors",
     "events.message_events",
     "guildDataLoad",
-    #"cogs.ExampleCog",
+
+    
+    "cogs.cog_commands",
+    "cogs.ExampleCog",
 ]
 
 async def load_all_cogs(bot):

@@ -1,5 +1,5 @@
 from configs import bot, TOKEN
-from load_all_cogs import load_all_cogs
+from cogs.load_all_cogs import load_all_cogs
 import commands_set
 import role_buttons_select
 import scrapper 
