@@ -12,6 +12,6 @@ def generate_message(guild, role_info_list):
             notSelected -= member_count
         else:
             message += f"{role_name}: Error\n"
-    message += f"{"선택 안함"}: {notSelected:4d}명\n"
+    message += f"선택 안함: {notSelected:4d}명\n"
 
     return message 
