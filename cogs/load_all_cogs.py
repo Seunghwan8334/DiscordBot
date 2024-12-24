@@ -3,8 +3,8 @@ cogs = [
     "events.command_errors",
     "events.message_events",
     "guildDataLoad",
+    "commands_set.user_commands",
 
-    
     "cogs.cog_commands",
     "cogs.ExampleCog",
 ]

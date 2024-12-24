@@ -70,15 +70,8 @@ async def shutdown(ctx):
     await ctx.send("shutting down...") 
     await bot.close() 
 
-@bot.command(name="sync", help="sync all slash commands in discord servers")
+@bot.command(name="sync")
 @commands.is_owner()
-async def sync_313(ctx):
-    await ctx.send(f"------------------------------------\n슬레시 명령어 동기화 중..")
-    try:
-        synced = await bot.tree.sync()
-        print(f"Synced {len(synced)} commands")
-        await ctx.send("동기화 성공!")
-    except Exception as e:
-        print(f"Error syncing commands: {e}")
-        await ctx.send("동기화 실패..")
+async def sync_bot(ctx):
+    await bot.tree.sync(guild=ctx.guild)
 

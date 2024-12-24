@@ -13,6 +13,8 @@ async def main():
 async def on_ready():
     print(f"Logged on as {bot.user}!")
 
+    await bot.tree.sync()
+
     print("Loading all guild data...")
     GuildDataLoader = bot.get_cog("GuildDataLoader")
     if GuildDataLoader:
