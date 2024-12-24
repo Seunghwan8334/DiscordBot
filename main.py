@@ -1,6 +1,6 @@
 from configs import bot, TOKEN
 from cogs.load_all_cogs import load_all_cogs
-import commands_set
+import commands
 import role_buttons_select
 import scrapper 
 import asyncio
