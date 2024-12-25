@@ -4,6 +4,7 @@ from bs4 import BeautifulSoup
 from .hufs_database import *
 import asyncio
 from datetime import datetime
+import pytz
 
 class HufsMonitor(commands.Cog):
     def __init__(self ,bot):
@@ -164,7 +165,8 @@ class HufsMonitor(commands.Cog):
                 
             else: self.status3 = "❌"
             
-            self.last_update = datetime.now().strftime("%Y년 %m월 %d일 - %H시 %M분 %S초")
+            kst = pytz.timezone('Asia/Seoul')
+            self.last_update = datetime.now(kst).strftime("%Y년 %m월 %d일 - %H시 %M분 %S초")
             message = self.message.format(
                 self.status1, self.status2, self.status3, 
                 self.channel1_status, self.channel2_status, self.channel3_status,
