@@ -13,10 +13,7 @@ async def on_ready():
 
     print("Loading all guild data...")
     GuildDataLoader = bot.get_cog("GuildDataLoader")
-    if GuildDataLoader:
-        GuildDataLoader.load_all_guild_database() 
-    else:
-        print("GuildDataLoader not found")
+    GuildDataLoader.load_all_guild_database()
         
     role_buttons_select.button_initialize()
 

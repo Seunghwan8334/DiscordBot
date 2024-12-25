@@ -6,6 +6,7 @@ cogs = [
     "guildDataLoad",
     
     "commands.user_commands",
+    "commands.admin_commands",
 
     "cogs.cog_commands",
     "cogs.example_cog",
