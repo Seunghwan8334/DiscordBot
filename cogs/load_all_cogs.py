@@ -10,6 +10,10 @@ cogs = [
 
     "cogs.cog_commands",
     "cogs.example_cog",
+
+    "hufs.hufs_commands",
+    "hufs.hufs_messages", #hufs_monitor에서 hufs_message를 사용함. 혹시 오류 주의
+    "hufs.hufs_monitor",
 ]
 
 async def load_all_cogs(bot):
@@ -17,6 +21,5 @@ async def load_all_cogs(bot):
     for cog in cogs:
         try:
             await bot.load_extension(cog)
-            print(f"{cog}가 로드되었습니다.")
         except Exception as e:
             print(f"{cog}를 로드하는 것을 실패하였습니다. 오류: {e}")

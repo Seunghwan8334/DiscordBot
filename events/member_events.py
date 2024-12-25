@@ -20,7 +20,6 @@ class MemberEvents(commands.Cog):
         
         if standard_role:
             await member.add_roles(standard_role)
-            await serverlog_channel.send(f"{member.mention}님에게 {standard_role.mention}을 부여하였습니다.")
         else:
             await serverlog_channel.send(f"{member.mention}님에게 {standard_role.mention}을 부여하는 것을 실패하였습니다.")
 
