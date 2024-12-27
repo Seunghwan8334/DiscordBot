@@ -5,50 +5,49 @@ from role_buttons_select.message_generator import generate_message
 @bot.event
 async def on_interaction(interaction: discord.Interaction):
     user = interaction.user
-    #최적화 필요함 귀찮아서 일단 미룸
-    for info in student_numbers:
-        if interaction.data.get("custom_id") == info.get("custom_id"):
-            role = interaction.guild.get_role(info["role_id"])
-            await toggle_role(interaction, user, role, student_numbers)
-
-            embed = interaction.message.embeds[0]
-            embed.description = generate_message(interaction.guild, student_numbers)
-            
-            await interaction.message.edit(embed=embed)
-            return
-
-    for info in student_statuses:
-        if interaction.data.get("custom_id") == info.get("custom_id"):
-            role = interaction.guild.get_role(info["role_id"])
-            await toggle_role(interaction, user, role, student_statuses)
-
-            embed = interaction.message.embeds[0]
-            embed.description = generate_message(interaction.guild, student_statuses)
-
-            await interaction.message.edit(embed=embed)
-            return
-    
-    for info in student_majors:
-        if interaction.data.get("custom_id") == info.get("custom_id"):
-            role = interaction.guild.get_role(info["role_id"])
-            await toggle_role(interaction, user, role, student_majors)
-
-            embed = interaction.message.embeds[0]
-            embed.description = generate_message(interaction.guild, student_majors)
-
-            await interaction.message.edit(embed=embed)
-            return
-    
-    for info in student_genders:
-        if interaction.data.get("custom_id") == info.get("custom_id"):
-            role = interaction.guild.get_role(info["role_id"])
-            await toggle_role(interaction, user, role, student_genders)
-
-            embed = interaction.message.embeds[0]
-            embed.description = generate_message(interaction.guild, student_genders)
-
-            await interaction.message.edit(embed=embed)
-            return
+    custom_id = interaction.data.get("custom_id")
+    if "student" in custom_id:
+        if "number" in custom_id:
+            for info in student_numbers:
+                if custom_id == info.get("custom_id"):
+                    role = interaction.guild.get_role(info["role_id"])
+                    await toggle_role(interaction, user, role, student_numbers)
+                    await update_message(interaction, student_numbers)
+                    return
+        elif "status" in custom_id:
+            for info in student_statuses:
+                if custom_id == info.get("custom_id"):
+                    role = interaction.guild.get_role(info["role_id"])
+                    await toggle_role(interaction, user, role, student_statuses)
+                    await update_message(interaction, student_statuses)
+                    return
+        elif "major" in custom_id:
+            for info in student_majors:
+                if custom_id == info.get("custom_id"):
+                    role = interaction.guild.get_role(info["role_id"])
+                    await toggle_role(interaction, user, role, student_majors)
+                    await update_message(interaction, student_majors)
+                    return
+        elif "gender" in custom_id:
+            for info in student_genders:
+                if custom_id == info.get("custom_id"):
+                    role = interaction.guild.get_role(info["role_id"])
+                    await toggle_role(interaction, user, role, student_genders)
+                    await update_message(interaction, student_genders)
+                    return
+        else:
+            print("student 존재하지 않는 custom_id 입니다.")
+    elif "hufs" in custom_id:
+        role_id = int(custom_id[0:19])
+        role = interaction.guild.get_role(role_id)
+        if role in user.roles:
+            await user.remove_roles(role)
+            await interaction.response.send_message(f"{role.mention} 역할을 제거하였습니다!", ephemeral=True)
+        else:
+            await user.add_roles(role)
+            await interaction.response.send_message(f"{role.mention} 역할을 부여하였습니다!", ephemeral=True)
+    else:
+        print("존재하지 않는 custom_id 입니다.")
 
 async def toggle_role(interaction, user, role, button_info_group):
     current_role = None
@@ -69,4 +68,10 @@ async def toggle_role(interaction, user, role, button_info_group):
     else:
         await user.add_roles(role)
         await interaction.response.send_message(f"{role.mention} 역할을 부여하였습니다!", ephemeral=True)
+
+async def update_message(interaction, button_info_group):
+    embed = interaction.message.embeds[0]
+    embed.description = generate_message(interaction.guild, button_info_group)
+            
+    await interaction.message.edit(embed=embed)
 

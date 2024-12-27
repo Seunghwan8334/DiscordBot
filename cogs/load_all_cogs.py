@@ -11,6 +11,7 @@ cogs = [
     "cogs.cog_commands",
     "cogs.example_cog",
 
+    "hufs.hufs_alarm",
     "hufs.hufs_commands",
     "hufs.hufs_messages", #hufs_monitor에서 hufs_message를 사용함. 혹시 오류 주의
     "hufs.hufs_monitor",
