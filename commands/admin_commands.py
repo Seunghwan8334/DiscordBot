@@ -7,6 +7,9 @@ class AdminCommands(commands.Cog):
     @commands.command(name="shutdown")
     @commands.is_owner()
     async def shutdown(self, ctx):
+        HufsMonitor = self.bot.get_cog("HufsMonitor")
+        if HufsMonitor.monitor_status == True:
+            await HufsMonitor.monitor_off(ctx)
         await ctx.send("shutting down...")
         await self.bot.close()
 

@@ -1,4 +1,7 @@
 cogs = [
+    "student_role_select.button_create_commands",
+    "student_role_select.button_interaction",
+
     "events.member_events",
     "events.command_errors",
     "events.message_events",
