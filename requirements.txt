@@ -3,3 +3,4 @@ python-dotenv
 requests 
 beautifulsoup4
 pytz
+audioop-lts #python 13 부터는 이게 빠짐 그래서 따로 추가해줘야 함 (discord에 포함되있음)
