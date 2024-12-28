@@ -34,5 +34,23 @@ class HufsCommands(commands.Cog):
 
         await ctx.send("검사 끝.")
 
+    @commands.command(name="set_data")
+    @commands.has_permissions(administrator=True)
+    async def set_data(self, ctx, ar1, ar2, ar3):
+        HufsMonitor = self.bot.get_cog("HufsMonitor")
+        HufsMonitor.increment1 = ar1 
+        HufsMonitor.increment2 = ar2 
+        HufsMonitor.increment3 = ar3
+        await ctx.send(f"data set to : {ar1, ar2, ar3}")
+    
+    @commands.command(name="get_data")
+    @commands.has_permissions(administrator=True)
+    async def get_data(self, ctx):
+        HufsMonitor = self.bot.get_cog("HufsMonitor")
+        ar1 = HufsMonitor.increment1 
+        ar2 = HufsMonitor.increment2 
+        ar3 = HufsMonitor.increment3 
+        await ctx.send(f"datas are {ar1}, {ar2}, {ar3}")
+
 async def setup(bot):
     await bot.add_cog(HufsCommands(bot))
