@@ -2,10 +2,6 @@ cogs = [
     "student_role_select.button_create_commands",
     "student_role_select.button_interaction",
 
-    "events.member_events",
-    "events.command_errors",
-    "events.message_events",
-
     "guildDataLoad",
     
     "commands.user_commands",
@@ -18,6 +14,12 @@ cogs = [
     "hufs.hufs_commands",
     "hufs.hufs_messages", #hufs_monitor에서 hufs_message를 사용함. 혹시 오류 주의
     "hufs.hufs_monitor",
+    "hufs.button_interaction",
+
+    "events.member_events",
+    "events.command_errors",
+    "events.message_events",
+    "events.interactions",
 ]
 
 async def load_all_cogs(bot):
