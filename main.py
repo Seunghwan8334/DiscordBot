@@ -12,7 +12,6 @@ async def on_ready():
 
 @bot.event
 async def setup_hook():
-    print("흠")
     await load_all_cogs(bot)
     await bot.tree.sync()
 
