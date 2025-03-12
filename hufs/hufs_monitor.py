@@ -89,7 +89,7 @@ class HufsMonitor(commands.Cog):
             td_write = td.find("td",class_="td-write").text.strip()
             td_date = td.find("td",class_="td-date").text.strip()
             td_link = td.find("td",class_="td-subject").find("a")["href"]
-            if td_num == "일반공지":
+            if td_num.isdigit() == False:
                 continue
             new_list.append({"number":int(td_num), "subject":td_subject, "writer":td_write, "date":td_date, "link":"<https://www.hufs.ac.kr"+td_link+">"})
         
